@@ -10,6 +10,12 @@ const errorHandler = (
   res,
   next,
 ) => { 
+  console.error("UNHANDLED ERROR");
+  console.error("message:", error?.message);
+  console.error("stack:", error?.stack);
+  console.error("name:", error?.name);
+  console.error("cause:", error?.cause);
+
   if (error instanceof ZodError) { 
     return res.status(400).json({ 
       error: { 
