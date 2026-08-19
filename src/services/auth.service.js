@@ -4,7 +4,7 @@ import { User } from '../models/user.model.js';
 
 import { Session } from '../models/session.model.js';
 
-import { hashToken } from '../utils/crypto.js';
+import { generateTimeBasedCode, hashToken } from '../utils/crypto.js';
 
 import { 
   createAccessToken,
@@ -51,8 +51,16 @@ const register = async ({
     },
   );
 
+  const { 
+    timePart,
+    cryptoPart,
+   } = generateTimeBasedCode();
+
+  const referralCode = `REF-${timePart}-${cryptoPart}`
+
   const user = await User.create({ 
     passwordHash,
+    referralCode,
     firstName: _firstName,
     middleName: _middleName,
     lastName: _lastName,
