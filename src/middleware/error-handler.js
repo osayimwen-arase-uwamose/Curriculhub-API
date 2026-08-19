@@ -31,7 +31,7 @@ const errorHandler = (
 
   logger.error(
     {
-      error: error,
+      error,
       method: req.method,
       path: req.originalUrl,
       requestId: req.id
