@@ -9,6 +9,7 @@ import { env } from "./config/env.js";
 import logger from "./lib/logger.js";
 
 import authRouter from './routes/auth.routes.js';
+import hubRouter from './routes/hub.routes.js';
 import assignmentRouter from "./routes/assignment.routes.js";
 
 import notFound from "./middleware/not-found.js";
@@ -60,6 +61,7 @@ app.get('/health', (_req, _res) => {
 });
 
 app.use('/auth', authRouter);
+app.use('/hubs', hubRouter);
 app.use('/assignment', assignmentRouter);
 
 app.use(notFound);
