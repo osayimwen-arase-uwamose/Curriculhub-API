@@ -26,6 +26,12 @@ const courseSchema = new Schema({
     field: String,
     dataValue: String
   }],
+
+  createdBy: { 
+    type: Schema.Types.ObjectId,
+    ref: "User",
+    required: true,
+  },
 }, { 
   timestamps: true,
 });
