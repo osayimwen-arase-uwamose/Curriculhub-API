@@ -32,6 +32,14 @@ const courseSchema = new Schema({
     ref: "User",
     required: true,
   },
+
+  slug: { 
+    type: String,
+    required: true,
+    unique: true,
+    trim: true,
+    lowercase: true,
+  },
 }, { 
   timestamps: true,
 });
