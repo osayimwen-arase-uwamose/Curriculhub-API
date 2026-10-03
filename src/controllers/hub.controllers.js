@@ -1,9 +1,3 @@
-import asyncHandler from "../utils/async-handler.js"
-
-import {
-  createHubSchema,
-} from "../validators/hub.validator.js";
-
 import {
   getHubs,
   createHub,
@@ -14,13 +8,13 @@ import {
   getHubMemberCount,
 } from "../services/hub.service.js";
 
-const get = async (req, res) => { 
+const get = async (req, res) => {
   const hubs = await getHubs({ 
     userId: req.user.id,
   });
 
   return res.status(201).json({ 
-    data: hubs,
+    data: { hubs, },
   });
 };
 
@@ -28,12 +22,12 @@ const create = async (req, res) => {
   const data = req.validated;
 
   const hub = await createHub({
-    ...data,
+    ...data.body,
     createdBy: req.user.id,
   });
 
   return res.status(201).json({
-    data: hub,
+    data: { hub, }
   });
 };
 
@@ -43,7 +37,7 @@ const getById = async (req, res) => {
   );
 
   return res.status(200).json({
-    data: hub,
+    data: { hub, }
   });
 };
 
@@ -53,7 +47,7 @@ const getBySlug = async (req, res) => {
   );
 
   return res.status(200).json({
-    data: hub,
+    data: { hub, }
   });
 };
 
@@ -64,7 +58,7 @@ const update = async (req, res) => {
   );
 
   return res.status(200).json({
-    data: hub,
+    data: { hub, }
   });
 };
 
@@ -74,7 +68,7 @@ const archive = async (req, res) => {
   );
 
   return res.status(200).json({
-    data: hub,
+    data: { hub, }
   });
 };
 

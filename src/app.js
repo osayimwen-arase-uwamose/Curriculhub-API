@@ -12,6 +12,7 @@ import authRouter from './routes/auth.routes.js';
 import hubRouter from './routes/hub.routes.js';
 import membershipRouter from './routes/hubMembership.routes.js';
 import assignmentRouter from "./routes/assignment.routes.js";
+import courseRouter from "./routes/course.routes.js";
 
 import notFound from "./middleware/not-found.js";
 import errorHandler from "./middleware/error-handler.js";
@@ -64,7 +65,9 @@ app.get('/health', (_req, _res) => {
 app.use('/auth', authRouter);
 app.use('/hubs', hubRouter);
 app.use('/memberships', membershipRouter);
-app.use('/assignment', assignmentRouter);
+app.use('/courses', courseRouter)
+app.use('/assignments', assignmentRouter);
+
 
 app.use(notFound);
 
