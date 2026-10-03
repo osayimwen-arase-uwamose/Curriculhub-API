@@ -15,7 +15,7 @@ import {
   requireHubRole,
 } from "../middleware/hubAuthorization.js";
 
-import { authenticate } from "../middleware/authenticate.js";
+import authenticate from "../middleware/authenticate.js";
 import asyncHandler from "../utils/async-handler.js";
 import validate from "../middleware/validate.js";
 

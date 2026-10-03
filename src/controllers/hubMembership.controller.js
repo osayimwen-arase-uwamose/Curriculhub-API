@@ -1,20 +1,9 @@
-import {
-  addMember,
-  inviteMember,
-  approveMember,
-  suspendMember,
-  restoreMember,
-  removeMember,
-  changeMemberRole,
-  transferOwnership,
-  getMembership,
-  getMembers,
-} from "../services/hubMembership.service.js";
+import * as hubMembershipService from "../services/hubMembership.service.js";
 
 const add = async (req, res) => {
   const data = req.validated;
 
-  const membership = await addMember({
+  const membership = await hubMembershipService.addMember({
     hubId: data.hubId,
     userId: data.userId,
     invitedBy: req.user.id,
@@ -29,7 +18,7 @@ const add = async (req, res) => {
 const invite = async (req, res) => {
   const data = req.validated;
 
-  const membership = await inviteMember({
+  const membership = await hubMembershipService.inviteMember({
     hubId: data.hubId,
     userId: data.userId,
     invitedBy: req.user.id,
@@ -43,7 +32,7 @@ const invite = async (req, res) => {
 const approve = async (req, res) => {
   const data = req.validated;
 
-  const membership = await approveMember(
+  const membership = await hubMembershipService.approveMember(
     data.hubId,
     data.userId
   );
@@ -56,7 +45,7 @@ const approve = async (req, res) => {
 const suspend = async (req, res) => { 
   const data = req.validated;
 
-  const membership = await suspendMember(
+  const membership = await hubMembershipService.suspendMember(
     data.hubId,
     data.userId
   );
@@ -69,7 +58,7 @@ const suspend = async (req, res) => {
 const restore = async (req, res) => { 
   const data = req.validated;
 
-  const membership = await restoreMember(
+  const membership = await hubMembershipService.restoreMember(
     data.hubId,
     data.userId
   );
@@ -82,7 +71,7 @@ const restore = async (req, res) => {
 const remove = async (req, res) => { 
   const data = req.validated;
 
-  await removeMember(
+  await hubMembershipService.removeMember(
     data.hubId,
     data.userId
   );
@@ -93,7 +82,7 @@ const remove = async (req, res) => {
 const changeRole = async (req, res) => {
     const data = req.validated;
 
-    const membership = await changeMemberRole(
+    const membership = await hubMembershipService.changeMemberRole(
       data.hubId,
       data.userId,
       data.role
@@ -107,7 +96,7 @@ const changeRole = async (req, res) => {
 const transferOwner = async (req, res) => { 
   const data = req.validated;
 
-  const hub = await transferOwnership(
+  const hub = await hubMembershipService.transferOwnership(
     data.hubId,
     req.user.id,
     data.newOwnerId
@@ -121,7 +110,7 @@ const transferOwner = async (req, res) => {
 const getMembership = async (req, res) => { 
   const data = req.validated;
 
-  const membership = await getMembership(
+  const membership = await hubMembershipService.getMembership(
     data.hubId,
     data.userId
   );
@@ -134,7 +123,7 @@ const getMembership = async (req, res) => {
 const list = async (req, res) => { 
   const data = req.validated;
 
-  const result = await getMembers(
+  const result = await hubMembershipService.getMembers(
     data.hubId,
     { 
       page: data.page,
