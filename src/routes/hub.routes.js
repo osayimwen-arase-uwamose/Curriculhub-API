@@ -31,7 +31,7 @@ router.get(
 );
 
 router.post(
-  "/create",
+  "/",
   authenticate,
   validate(createHubSchema),
   asyncHandler(hubController.create)
@@ -49,7 +49,7 @@ router.patch(
   asyncHandler(requireHubMembership),
   requireHubRole([
     'owner',
-    'admin'
+    'admin',
   ]),
   validate(updateHubSchema),
   asyncHandler(hubController.update)

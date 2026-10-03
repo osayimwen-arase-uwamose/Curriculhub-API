@@ -86,7 +86,7 @@ const createHub = async ({
       throw new AppError(
         409,
         "A Hub with this title already exists.",
-        "HUB_SLUG_EXISTS",
+        "HUB_EXISTS",
       );
     }
 
