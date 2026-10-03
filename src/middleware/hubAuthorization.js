@@ -2,11 +2,11 @@ import asyncHandler from "../utils/async-handler.js";
 import AppError from "../utils/app-error.js";
 
 import {
-  findHubMembership,
+  getMembership,
 } from "../services/hubMembership.service.js";
 
 const requireHubMembership = async (req, _res, next) => {
-    const membership = await findHubMembership({
+    const membership = await getMembership({
       hubId: req.params.hubId,
       userId: req.user.id,
     });
